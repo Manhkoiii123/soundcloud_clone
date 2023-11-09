@@ -28,7 +28,7 @@ async function refreshAccessToken(token: JWT) {
       error: "",
     };
   } else {
-    //failed to refresh token => do nothing
+    //failed to refresh token => do nothings
     return {
       ...token,
       error: "RefreshAccessTokenError", // This is used in the front-end, and if present, we can force a re-login, or similar
