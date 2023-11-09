@@ -1,0 +1,10 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+.active {
+  background: #3b4a59;
+  color: #cefaff;
+  border-radius: 5px;
+}
