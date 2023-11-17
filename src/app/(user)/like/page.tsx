@@ -1,10 +1,11 @@
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 import { sendRequest } from "@/utils/api";
 
 import Container from "@mui/material/Container";
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import TrackLikePage from "./component/like.page";
+import { authOptions } from "@/app/api/auth/auth.options";
 export const metadata: Metadata = {
   title: "ManhTd Like Page",
   description: "Like page",

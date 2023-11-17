@@ -5,6 +5,7 @@ import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { sendRequest } from "@/utils/api";
+import { handleLikeTrackAction } from "@/utils/actions/actions";
 interface Iprops {
   track: ITrackTop | null;
 }
@@ -36,33 +37,10 @@ const LikeTrack = (props: Iprops) => {
     fetchData();
   }, [session]);
   const handleLikeTrack = async () => {
-    await sendRequest<IBackendRes<IModelPaginate<ITrackLike>>>({
-      url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/api/v1/likes`,
-      method: "POST",
-      body: {
-        track: track?._id,
-        quantity: trackLikes?.some((t) => t._id === track?._id) ? -1 : 1,
-      },
-      headers: {
-        Authorization: `Bearer ${session?.access_token}`,
-      },
-    });
-    await sendRequest<IBackendRes<any>>({
-      url: `/api/revalidate`,
-      method: "POST",
-      queryParams: {
-        tag: "track-by-id",
-        secret: "tranducmanh",
-      },
-    });
-    await sendRequest<IBackendRes<any>>({
-      url: `/api/revalidate`,
-      method: "POST",
-      queryParams: {
-        tag: "liked-by-user",
-        secret: "tranducmanh",
-      },
-    });
+    const id = track?._id;
+    const quantity = trackLikes?.some((t) => t._id === track?._id) ? -1 : 1;
+
+    await handleLikeTrackAction(id,quantity);
     fetchData();
     router.refresh();
   };

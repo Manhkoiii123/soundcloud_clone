@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import { sendRequest } from "@/utils/api";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/app/api/auth/[...nextauth]/route";
+
 import NewPlaylist from "./components/new.playlist";
 import AddPlaylistTrack from "./components/add.playlist.track";
 import { Fragment } from "react";
@@ -16,6 +16,7 @@ import CurrentTrack from "./components/current.track";
 import type { Metadata } from "next";
 import DeletePlaylist from "./components/delete.playlist";
 import DeleteTrackInPlaylist from "./components/delete.track.playlist";
+import { authOptions } from "@/app/api/auth/auth.options";
 
 export const metadata: Metadata = {
   title: "Playlist bạn đã tạo",
